@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-
+import Home from "pages/Home/Home";
 type Props = {};
 const Main = (props: Props) => {
   return (
@@ -8,7 +8,7 @@ const Main = (props: Props) => {
         padding: "40px 0",
       }}
     >
-      Main
+      <Home />
     </Container>
   );
 };
