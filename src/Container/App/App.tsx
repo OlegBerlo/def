@@ -11,14 +11,21 @@ type CartData = {
 
 const App = () => {
   const [cartData, setCartData] = useState<CartData>({
-    totalCount: 10,
-    totalPrice: 100,
+    totalCount: 0,
+    totalPrice: 0,
   });
+  const addProductToCart = (count: number, price: number) => {
+    setCartData((prevState) => ({
+      totalCount: prevState.totalCount + count,
+      totalPrice: prevState.totalPrice + count * price,
+    }));
+  };
+
   return (
     <StyledEngineProvider injectFirst>
       <CssBaseline />
       <Header cartData={cartData} />
-      <Main />
+      <Main addProductToCart={addProductToCart} />
     </StyledEngineProvider>
   );
 };
