@@ -5,6 +5,7 @@ type Product = {
   capacity: string
   type: string
   price:number
+  image:string  
 }
 
 const productsArray:Product[] = [
@@ -15,6 +16,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '256',
   price: 1500,
+  image:"/images/iphone1.webp",
 },
 {
   id:2,
@@ -23,6 +25,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '256',
   price: 1500,
+  image:"/images/iphone2.webp",
 },
 {
   id:3,
@@ -31,6 +34,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '256',
   price: 1500,
+  image:"/images/iphone3.webp",
 },
 {
   id:4,
@@ -39,6 +43,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '218273',
   price: 10,
+  image:"/images/iphone4.webp",
 },
 {
   id:5,
@@ -47,6 +52,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '252',
   price: 80,
+  image:"/images/iphone5.webp",
 },
 {
   id:6,
@@ -55,6 +61,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '8',
   price: 991,
+  image:"/images/iphone6.webp",
 },
 {
   id:7,
@@ -63,6 +70,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '218273',
   price: 881,
+  image:"/images/iphone7.webp",
 },
 {
   id:8,
@@ -71,6 +79,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '252',
   price: 80,
+  image:"/images/iphone8.webp",
 },
 {
   id:9,
@@ -79,6 +88,7 @@ const productsArray:Product[] = [
   type: 'phone',
   capacity: '8',
   price: 177,
+  image:"/images/iphone9.webp",
 }
 ]
 
