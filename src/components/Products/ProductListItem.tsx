@@ -18,10 +18,12 @@ type Props = {
 };
 type State = {
   count: number;
+  color: string;
 };
 class ProductListItem extends React.Component<Props, State> {
   state = {
     count: 1,
+    color: "green",
   };
   onIncrementClick = () => {
     this.setState((prevState) => ({
@@ -31,6 +33,12 @@ class ProductListItem extends React.Component<Props, State> {
   onDecrementClick = () => {
     this.setState((prevState) => ({
       count: prevState.count - 1,
+    }));
+  };
+
+  changeColor = () => {
+    this.setState((prevState) => ({
+      color: prevState.color === "green" ? "red" : "green",
     }));
   };
 
@@ -45,16 +53,27 @@ class ProductListItem extends React.Component<Props, State> {
           <h4 className="product-title">{title}</h4>
           <div className="product-description">{description}</div>
           <div className="product-features">Type: {type}</div>
-          <div className="product-features">
-            Capacity: {this.props.capacity} Gb
+          <div className="product-features">Capacity: {capacity} Gb</div>
+          <div>
+            Color:{" "}
+            <span className={`${this.state.color}`}>{this.state.color}</span>
           </div>
+          <button onClick={() => this.changeColor()}>Change color</button>
           <div className="product-price">Price: $ {price}</div>
           <div className="product-quantity">
-            <Button variant="outlined" onClick={() => this.onDecrementClick()}>
+            <Button
+              variant="outlined"
+              onClick={() => this.onDecrementClick()}
+              disabled={this.state.count <= 1}
+            >
               -
             </Button>
             <TextField value={this.state.count} size="small" />
-            <Button variant="outlined" onClick={() => this.onIncrementClick()}>
+            <Button
+              variant="outlined"
+              onClick={() => this.onIncrementClick()}
+              disabled={this.state.count >= 10}
+            >
               +
             </Button>
           </div>
@@ -63,12 +82,4 @@ class ProductListItem extends React.Component<Props, State> {
     );
   }
 }
-// const ProductListItem = ({
-//   title,
-//   description,
-//   type,
-//   capacity,
-//   price,
-//   image,
-// }: Props) => {};
 export default ProductListItem;
