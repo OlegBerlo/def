@@ -23,10 +23,19 @@ const App = () => {
     }));
   };
 
+  const remmoveProductFromCart = (id: number) => {
+    setProductsInCart((prevState) => {
+      let prevProductsInCart = { ...prevState };
+      delete prevProductsInCart[id];
+      return prevProductsInCart;
+    });
+  };
+
   return (
     <StyledEngineProvider injectFirst>
       <CssBaseline />
       <Header productsInCart={productsInCart} />
+      <button onClick={() => remmoveProductFromCart(1)}>Delete</button>
       <Container
         sx={{
           padding: "40px 0",
