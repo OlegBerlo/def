@@ -6,9 +6,15 @@ import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 import Home from "pages/Home/Home";
 import CartPage from "pages/Cart/CartPage";
+import { createContext } from "react";
+import { omit } from "lodash";
 type ProductsInCart = {
   [id: number]: number;
 };
+type Context = {
+  removeProductFromCart: (id: number) => void;
+};
+export const AppContext = createContext<Context | null>(null);
 
 const App = () => {
   const [productsInCart, setProductsInCart] = useState<ProductsInCart>({
@@ -23,35 +29,36 @@ const App = () => {
     }));
   };
 
-  const remmoveProductFromCart = (id: number) => {
-    setProductsInCart((prevState) => {
-      let prevProductsInCart = { ...prevState };
-      delete prevProductsInCart[id];
-      return prevProductsInCart;
-    });
+  const removeProductFromCart = (id: number) => {
+    setProductsInCart((prevState) => omit(prevState, id));
   };
 
   return (
     <StyledEngineProvider injectFirst>
-      <CssBaseline />
-      <Header productsInCart={productsInCart} />
-      <button onClick={() => remmoveProductFromCart(1)}>Delete</button>
-      <Container
-        sx={{
-          padding: "40px 0",
+      <AppContext.Provider
+        value={{
+          removeProductFromCart: removeProductFromCart,
         }}
       >
-        <Routes>
-          <Route
-            path="/"
-            element={<Home addProductToCart={addProductToCart} />}
-          />
-          <Route
-            path="/cart"
-            element={<CartPage productsInCart={productsInCart} />}
-          />
-        </Routes>
-      </Container>
+        <CssBaseline />
+        <Header productsInCart={productsInCart} />
+        <Container
+          sx={{
+            padding: "40px 0",
+          }}
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={<Home addProductToCart={addProductToCart} />}
+            />
+            <Route
+              path="/cart"
+              element={<CartPage productsInCart={productsInCart} />}
+            />
+          </Routes>
+        </Container>
+      </AppContext.Provider>
     </StyledEngineProvider>
   );
 };
